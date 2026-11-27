@@ -1,0 +1,16 @@
+{
+  "name": "ai-documentary-news-studio",
+  "private": true,
+  "version": "0.1.0",
+  "workspaces": ["apps/*"],
+  "scripts": {
+    "dev": "concurrently \"npm:dev --workspace @studio/api\" \"npm:dev --workspace @studio/web\"",
+    "build": "npm run build --workspace @studio/web && npm run build --workspace @studio/api",
+    "start": "npm run start --workspace @studio/api"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2",
+    "typescript": "^5.7.3"
+  },
+  "engines": { "node": ">=20" }
+}
