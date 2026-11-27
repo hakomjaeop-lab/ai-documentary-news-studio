@@ -1,7 +1,15 @@
 import { useState } from "react";
-import { Activity, AudioLines, Clapperboard, FileSearch, Film, FolderOpen, Gauge, Globe2, LayoutDashboard, Plus, Search, Settings2, ShieldCheck, Sparkles, UploadCloud } from "lucide-react";
+import { Activity, AudioLines, Clapperboard, FileSearch, Film, FolderOpen, Gauge, Globe2, LayoutDashboard, Plus, Search, Settings2, ShieldCheck, Sparkles, UploadCloud, type LucideIcon } from "lucide-react";
 
 type Language = "ar-MA" | "ar";
+const stages: { n: string; title: string; desc: string; Icon: LucideIcon }[] = [
+  { n: "01", title: "البحث وجمع المصادر", desc: "بحث متعدد المصادر مع توثيق المعلومات", Icon: FileSearch },
+  { n: "02", title: "التحقق من الحقائق", desc: "تمييز المؤكد وغير المؤكد والمتضارب", Icon: ShieldCheck },
+  { n: "03", title: "كتابة السيناريو", desc: "بناء قصة وثائقية بسرد مشوّق", Icon: Sparkles },
+  { n: "04", title: "لوحة المشاهد", desc: "صور وخرائط ووثائق وحركة كاميرا", Icon: Clapperboard },
+  { n: "05", title: "الصوت والمونتاج", desc: "تعليق صوتي ومؤثرات وموسيقى", Icon: AudioLines },
+  { n: "06", title: "المراجعة والتصدير", desc: "موافقتك قبل إخراج MP4", Icon: UploadCloud }
+];
 
 export default function App() {
   const [topic, setTopic] = useState("");
@@ -39,7 +47,7 @@ export default function App() {
         {notice && <div className="notice" role="status">{notice}</div>}
       </section>
       <section className="lower-grid"><div className="card pipeline"><div className="section-heading"><div><span className="step">02</span><div><h2>خط إنتاج الوثائقي</h2><p>مراحل المشروع من الفكرة إلى التصدير.</p></div></div><span className="muted">WORKFLOW</span></div><div className="pipeline-list">
-        {[["01","البحث وجمع المصادر","بحث متعدد المصادر مع توثيق المعلومات",FileSearch],["02","التحقق من الحقائق","تمييز المؤكد وغير المؤكد والمتضارب",ShieldCheck],["03","كتابة السيناريو","بناء قصة وثائقية بسرد مشوّق",Sparkles],["04","لوحة المشاهد","صور وخرائط ووثائق وحركة كاميرا",Clapperboard],["05","الصوت والمونتاج","تعليق صوتي ومؤثرات وموسيقى",AudioLines],["06","المراجعة والتصدير","موافقتك قبل إخراج MP4",UploadCloud]].map(([n,title,desc,Icon]) => <div className="pipeline-row" key={String(n)}><span className="pipeline-num">{String(n)}</span><div className="pipeline-icon"><Icon size={17}/></div><div className="pipeline-copy"><b>{String(title)}</b><small>{String(desc)}</small></div><span className="locked">قريباً</span></div>)}
+        {stages.map(({ n, title, desc, Icon }) => <div className="pipeline-row" key={n}><span className="pipeline-num">{n}</span><div className="pipeline-icon"><Icon size={17}/></div><div className="pipeline-copy"><b>{title}</b><small>{desc}</small></div><span className="locked">قريباً</span></div>)}
       </div></div><div className="side-column"><div className="card format-card"><div className="mini-title"><Gauge size={17}/> إعدادات الفيديو</div><div className="format-preview"><div className="frame"><span>16:9</span><Clapperboard size={28}/><small>DOCUMENTARY</small></div></div><div className="specs"><div><span>الدقة</span><b>1920 × 1080</b></div><div><span>المدة المستهدفة</span><b>5–10 دقائق</b></div><div><span>نوع المحتوى</span><b>جميع المجالات</b></div></div></div><div className="card provider-card"><div className="provider-icon"><Sparkles size={18}/></div><div><b>الذكاء الاصطناعي</b><p>ستتم إضافة مفاتيح الخدمات من إعدادات الخادم بشكل آمن.</p></div></div></div></section>
       <footer>AI DOCUMENTARY NEWS STUDIO <span>•</span> BUILDING STORIES WITH EVIDENCE</footer>
     </main>
