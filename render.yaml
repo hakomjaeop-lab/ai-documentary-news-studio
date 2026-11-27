@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: ai-documentary-news-studio
+    runtime: node
+    plan: starter
+    buildCommand: npm install && npm run build
+    startCommand: npm run start --workspace @studio/api
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: WEB_ORIGIN
+        value: "*"
